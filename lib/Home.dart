@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage> {
     var post = await http.post(url, body: payload, headers: header);
     //get results from api
     var result = jsonDecode(post.body);
-    //  print(result['ParsedResults'][0]['ParsedText']);
+     print(result['ParsedResults'][0]['ParsedText']);
     setState(() {
       uploading = false;
       parsedText = result['ParsedResults'][0]['ParsedText'];
@@ -97,7 +97,7 @@ class _HomePageState extends State<HomePage> {
           SizedBox(
             height: 10.0,
           ),
-          Center(
+          uploading ? CircularProgressIndicator() : Center(
             child: Text(
               parsedText,
               style: GoogleFonts.montserrat(
